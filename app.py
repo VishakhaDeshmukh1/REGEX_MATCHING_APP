@@ -1,40 +1,36 @@
-# app.py
-from flask import Flask, render_template, request
+# step 1 - import flask
+from flask import Flask, request, render_template
 import re
+
 
 app = Flask(__name__)
 
-def regex_matcher(test_string, regex_pattern):
-    matches = re.findall(regex_pattern, test_string)
-    return matches
 
-def is_valid_email(email):
-    # Improved regex pattern for email validation
-    email_pattern = r'^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$'
-    return re.match(email_pattern, email)
-
-@app.route('/')
-def home():
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        test_string = request.form['test_string']
+        regex_pattern = request.form['regex_pattern']        
     return render_template('index.html')
 
-@app.route('/regex_results', methods=['POST'])
-def regex_results():
-    test_string = request.form.get('test_string')
-    regex_pattern = request.form.get('regex_pattern')
+@app.route('/results', methods=['POST'])
+def results():
+    test_string = request.form['test_string']
+    regex_pattern = request.form['regex_pattern']
+    matched_strings = re.findall(regex_pattern, test_string)
+    return render_template('results.html', test_string=test_string, regex_pattern=regex_pattern, matched_strings=matched_strings)
 
-    regex_matches = regex_matcher(test_string, regex_pattern)
+@app.route('/validate', methods=['GET','POST'])
+def validate():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        if re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email):
+            return render_template('email_validation.html', email=email, valid=True)
+        else:
+            return render_template('email_validation.html', email=email, valid=False)
+    return render_template("email_validation.html")
+#
 
-    return render_template('index.html', test_string=test_string, regex_pattern=regex_pattern,
-                           regex_matches=regex_matches)
-
-@app.route('/email_validation', methods=['POST'])
-def email_validation():
-    email_to_validate = request.form.get('email')
-
-    is_valid_email_result = is_valid_email(email_to_validate)
-
-    return render_template('index.html', email=email_to_validate,
-                           is_valid_email=is_valid_email_result)
-
+# step 4 - run the app
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0')

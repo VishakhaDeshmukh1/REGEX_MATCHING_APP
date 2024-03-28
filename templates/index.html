@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex Matcher</title>
+    <style media="screen">
+    body {
+        background-color: #0f0f0f;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+        font-size: 28px;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-size: 16px;
+        color: #fff;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 8px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid #23a2f6;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+        border-color: #f09819;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        background-color: #f09819;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #ff512f;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Regex Matcher</h1>
+        <form action="/results" method="post" id="regexForm">
+            <label for="regex_pattern">Regular Expression</label>
+            <input type="text" id="regex_pattern" name="regex_pattern" placeholder="Enter the regular expression" required>
+            <label for="test_string">Test String</label>
+            <textarea id="test_string" name="test_string" rows="4" placeholder="Enter the test string" required></textarea>
+            <button type="submit">Match</button>
+        </form>
+    </div>
+</body>
+</html>

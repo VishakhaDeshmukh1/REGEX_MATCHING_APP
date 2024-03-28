@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+    body {
+        background-color: #0c0c0c;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+        font-size: 28px;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-size: 18px;
+        color: #fff;
+    }
+
+    .result-box {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .result-box strong {
+        color: #23a2f6;
+    }
+
+    .result-box p {
+        color: #fff;
+        margin-bottom: 10px;
+    }
+
+    .matched-results {
+        font-size: 16px;
+        color: #fff;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Regex Results</h1>
+        <div class="result-box">
+            <label for="regex-pattern">Regex Pattern:</label>
+            <p id="regex-pattern">{{ regex_pattern }}</p>
+            <label for="test-string">Test String:</label>
+            <p id="test-string">{{ test_string }}</p>
+            <label for="matched-results">Matched Results:</label>
+            <p class="matched-results">{{ matched_strings|join(', ') }}</p>
+        </div>
+    </div>
+</body>
+</html>
